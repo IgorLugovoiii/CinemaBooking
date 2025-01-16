@@ -2,6 +2,8 @@ package com.exampleProject.CinemaBooking.repositories;
 
 import com.exampleProject.CinemaBooking.models.Movie;
 import com.exampleProject.CinemaBooking.models.Session;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,4 +14,5 @@ import java.util.List;
 public interface SessionRepository extends JpaRepository<Session,Long> {
     List<Session> findSessionsByMovie(Movie movie);
     List<Session> findSessionsByStartTime(LocalDateTime startTime);
+    Page<Session> findAll(Pageable pageable);
 }
