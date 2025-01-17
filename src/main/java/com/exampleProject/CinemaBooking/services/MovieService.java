@@ -47,7 +47,7 @@ public class MovieService {
         movieRepository.deleteById(id);
     }
     @Transactional(readOnly = true)
-    List<Movie> findMoviesByGenre(String genre){
+    public List<Movie> findMoviesByGenre(String genre){
         return movieRepository.findMoviesByGenre(genre);
     }
 }

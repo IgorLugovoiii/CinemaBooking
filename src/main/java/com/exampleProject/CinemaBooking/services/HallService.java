@@ -43,7 +43,7 @@ public class HallService {
         hallRepository.deleteById(id);
     }
     @Transactional(readOnly = true)
-    List<Hall> findHallsBySeatsPerRow(Integer seatsPerRow){
+    public List<Hall> findHallsBySeatsPerRow(Integer seatsPerRow){
         return hallRepository.findHallsBySeatsPerRow(seatsPerRow);
     }
 }

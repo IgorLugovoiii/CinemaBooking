@@ -55,7 +55,7 @@ public class BookingService {
         bookingRepository.deleteById(id);
     }
     @Transactional(readOnly = true)
-    List<BookingDto> findBookingByBookingTime(LocalDateTime bookingTime){
+    public List<BookingDto> findBookingByBookingTime(LocalDateTime bookingTime){
         return bookingRepository.findBookingByBookingTime(bookingTime).stream()
                 .map(this::convertToBookingDto)
                 .toList();

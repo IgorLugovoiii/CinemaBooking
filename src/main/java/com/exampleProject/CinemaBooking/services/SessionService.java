@@ -3,6 +3,7 @@ package com.exampleProject.CinemaBooking.services;
 import com.exampleProject.CinemaBooking.dtos.SessionDto;
 import com.exampleProject.CinemaBooking.models.Movie;
 import com.exampleProject.CinemaBooking.models.Session;
+import com.exampleProject.CinemaBooking.repositories.MovieRepository;
 import com.exampleProject.CinemaBooking.repositories.SessionRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +14,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SessionService {
     private final SessionRepository sessionRepository;
+    private final MovieRepository movieRepository;
 
     @Autowired
-    public SessionService(SessionRepository sessionRepository){
+    public SessionService(SessionRepository sessionRepository, MovieRepository movieRepository){
         this.sessionRepository = sessionRepository;
+        this.movieRepository = movieRepository;
     }
     private SessionDto convertToSessionDto(Session session){
         return new SessionDto(session);
@@ -57,13 +61,15 @@ public class SessionService {
         sessionRepository.deleteById(id);
     }
     @Transactional
-    List<SessionDto> findSessionsByMovie(Movie movie){
+    public List<SessionDto> findSessionsByMovie(Long movieId){
+        Movie movie = movieRepository.findById(movieId)
+                .orElseThrow(EntityNotFoundException::new);
         return sessionRepository.findSessionsByMovie(movie).stream()
                 .map(this::convertToSessionDto)
                 .toList();
     }
     @Transactional
-    List<SessionDto> findSessionsByStartTime(LocalDateTime startTime){
+    public List<SessionDto> findSessionsByStartTime(LocalDateTime startTime){
         return sessionRepository.findSessionsByStartTime(startTime).stream()
                 .map(this::convertToSessionDto)
                 .toList();
