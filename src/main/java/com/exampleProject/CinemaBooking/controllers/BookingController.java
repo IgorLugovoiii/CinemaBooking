@@ -3,6 +3,7 @@ package com.exampleProject.CinemaBooking.controllers;
 import com.exampleProject.CinemaBooking.dtos.BookingDto;
 import com.exampleProject.CinemaBooking.models.Booking;
 import com.exampleProject.CinemaBooking.services.BookingService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -38,11 +40,11 @@ public class BookingController {
         return new ResponseEntity<>(bookingService.findById(id),HttpStatus.OK);
     }
     @PostMapping
-    public ResponseEntity<BookingDto> createBooking(@RequestBody Booking booking){
+    public ResponseEntity<?> createBooking(@Valid @RequestBody Booking booking){
         return new ResponseEntity<>(bookingService.createBooking(booking),HttpStatus.CREATED);
     }
     @PutMapping("/{id}")
-    public ResponseEntity<BookingDto> updateBooking(@RequestBody Booking booking, @PathVariable Long id){
+    public ResponseEntity<?> updateBooking(@Valid @RequestBody Booking booking, @PathVariable Long id){
         return new ResponseEntity<>(bookingService.updateBooking(booking, id),HttpStatus.CREATED);
     }
     @DeleteMapping("/{id}")

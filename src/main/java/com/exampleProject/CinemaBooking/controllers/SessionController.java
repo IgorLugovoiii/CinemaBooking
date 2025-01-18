@@ -4,6 +4,7 @@ import com.exampleProject.CinemaBooking.dtos.SessionDto;
 import com.exampleProject.CinemaBooking.models.Movie;
 import com.exampleProject.CinemaBooking.models.Session;
 import com.exampleProject.CinemaBooking.services.SessionService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -38,11 +39,11 @@ public class SessionController {
         return new ResponseEntity<>(sessionService.findById(id), HttpStatus.OK);
     }
     @PostMapping
-    public ResponseEntity<SessionDto> createSession(@RequestBody Session session){
+    public ResponseEntity<?> createSession(@Valid @RequestBody Session session){
         return new ResponseEntity<>(sessionService.createSession(session),HttpStatus.CREATED);
     }
     @PutMapping("/{id}")
-    public ResponseEntity<SessionDto> updateSession(@RequestBody Session session, @PathVariable Long id){
+    public ResponseEntity<?> updateSession(@Valid @RequestBody Session session, @PathVariable Long id){
         return new ResponseEntity<>(sessionService.updateSession(session,id),HttpStatus.CREATED);
     }
     @DeleteMapping("/{id}")

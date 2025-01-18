@@ -2,6 +2,7 @@ package com.exampleProject.CinemaBooking.controllers;
 
 import com.exampleProject.CinemaBooking.models.Hall;
 import com.exampleProject.CinemaBooking.services.HallService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,11 +28,11 @@ public class HallController {
         return new ResponseEntity<>(hallService.findById(id),HttpStatus.OK);
     }
     @PostMapping
-    public ResponseEntity<Hall> createHall(@RequestBody Hall hall){
+    public ResponseEntity<?> createHall(@Valid @RequestBody Hall hall){
         return new ResponseEntity<>(hallService.createHall(hall),HttpStatus.CREATED);
     }
     @PutMapping("/{id}")
-    public ResponseEntity<Hall> updateHall(@RequestBody Hall hall, @PathVariable Long id){
+    public ResponseEntity<?> updateHall(@Valid @RequestBody Hall hall, @PathVariable Long id){
         return new ResponseEntity<>(hallService.updateHall(hall, id), HttpStatus.CREATED);
     }
     @DeleteMapping("/{id}")

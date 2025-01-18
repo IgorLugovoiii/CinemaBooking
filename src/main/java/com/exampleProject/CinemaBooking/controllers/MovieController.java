@@ -2,6 +2,7 @@ package com.exampleProject.CinemaBooking.controllers;
 
 import com.exampleProject.CinemaBooking.models.Movie;
 import com.exampleProject.CinemaBooking.services.MovieService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,11 +30,11 @@ public class MovieController {
         return new ResponseEntity<>(movieService.findById(id),HttpStatus.OK);
     }
     @PostMapping
-    public ResponseEntity<Movie> createMovie(@RequestBody Movie movie){
+    public ResponseEntity<?> createMovie(@Valid @RequestBody Movie movie){
         return new ResponseEntity<>(movieService.createMovie(movie),HttpStatus.CREATED);
     }
     @PutMapping("/{id}")
-    public ResponseEntity<Movie> updateMovie(@RequestBody Movie movie, @PathVariable Long id){
+    public ResponseEntity<?> updateMovie(@Valid @RequestBody Movie movie, @PathVariable Long id){
         return new ResponseEntity<>(movieService.updateMovie(movie, id), HttpStatus.CREATED);
     }
     @DeleteMapping("/{id}")
