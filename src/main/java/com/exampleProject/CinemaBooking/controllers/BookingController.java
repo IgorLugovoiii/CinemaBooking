@@ -3,6 +3,8 @@ package com.exampleProject.CinemaBooking.controllers;
 import com.exampleProject.CinemaBooking.dtos.BookingDto;
 import com.exampleProject.CinemaBooking.models.Booking;
 import com.exampleProject.CinemaBooking.services.BookingService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,7 +13,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -19,13 +20,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/booking")
+@Tag(name = "Booking controller", description = "Manages booking")//Додається на рівні класу, щоб методи автоматично групувалися
 public class BookingController {
     private final BookingService bookingService;
     @Autowired
     public BookingController(BookingService bookingService){
         this.bookingService = bookingService;
     }
-
+    @Operation(summary = "Get all bookings", description = "Returns a list of bookings")//Описує конкретний API-метод у контролері.
     @GetMapping
     public ResponseEntity<Page<BookingDto>> findAll(
             @RequestParam(defaultValue = "0") int page,
