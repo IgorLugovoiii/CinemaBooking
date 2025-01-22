@@ -1,6 +1,8 @@
 package com.exampleProject.CinemaBooking.dtos;
 
 import com.exampleProject.CinemaBooking.models.Booking;
+import com.exampleProject.CinemaBooking.models.Movie;
+import com.exampleProject.CinemaBooking.models.Session;
 import com.exampleProject.CinemaBooking.models.enums.BookingStatus;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;
@@ -9,6 +11,7 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Data
 public class BookingDto {
@@ -24,7 +27,10 @@ public class BookingDto {
 
     public BookingDto(Booking booking){
         username = booking.getUser().getUsername();
-        movieTitle = booking.getSession().getMovie().getTitle();
+        movieTitle = Optional.ofNullable(booking.getSession())
+                .map(Session::getMovie)
+                .map(Movie::getTitle)
+                .orElse("No movie assigned");
         seats = booking.getSeats();
         bookingTime = booking.getBookingTime();
         status = booking.getStatus();
