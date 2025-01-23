@@ -54,6 +54,7 @@ public class TestHallService {
         Optional<Hall> result = hallService.findById(1L);
 
         assertNotNull(result);
+        assertTrue(result.isPresent());
         assertEquals(1L, result.get().getId());
         assertEquals(hall.getName(), result.get().getName());
         Mockito.verify(hallRepository,Mockito.times(1)).findById(1L);
@@ -104,7 +105,7 @@ public class TestHallService {
         List<Hall> result = hallService.findHallsBySeatsPerRow(5);
 
         assertNotNull(result);
-        assertEquals(hall.getSeatsPerRow(), result.get(0).getSeatsPerRow());
+        assertEquals(hall.getSeatsPerRow(), result.getFirst().getSeatsPerRow());
         assertEquals(1, result.size());
         Mockito.verify(hallRepository, Mockito.times(1)).findHallsBySeatsPerRow(5);
     }
