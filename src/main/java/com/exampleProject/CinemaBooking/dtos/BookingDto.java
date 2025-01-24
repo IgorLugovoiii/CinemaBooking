@@ -26,6 +26,7 @@ public class BookingDto {
     private BookingStatus status;
 
     public BookingDto(Booking booking){
+        id = booking.getId();
         username = booking.getUser().getUsername();
         movieTitle = Optional.ofNullable(booking.getSession())
                 .map(Session::getMovie)
