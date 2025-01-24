@@ -103,7 +103,7 @@ public class TestMovieService {
     public void testDeleteByID(){
         Mockito.doNothing().when(movieRepository).deleteById(1L);
 
-        movieRepository.deleteById(1L);
+        movieService.deleteById(1L);
 
         Mockito.verify(movieRepository, Mockito.times(1)).deleteById(1L);
     }
