@@ -1,8 +1,7 @@
-package com.exampleProject.CinemaBooking.Services;
+package com.exampleProject.CinemaBooking.services;
 
 import com.exampleProject.CinemaBooking.models.Hall;
 import com.exampleProject.CinemaBooking.repositories.HallRepository;
-import com.exampleProject.CinemaBooking.services.HallService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

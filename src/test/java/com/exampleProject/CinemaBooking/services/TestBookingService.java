@@ -1,4 +1,4 @@
-package com.exampleProject.CinemaBooking.Services;
+package com.exampleProject.CinemaBooking.services;
 
 import com.exampleProject.CinemaBooking.dtos.BookingDto;
 import com.exampleProject.CinemaBooking.models.Booking;
@@ -6,7 +6,6 @@ import com.exampleProject.CinemaBooking.models.Session;
 import com.exampleProject.CinemaBooking.models.User;
 import com.exampleProject.CinemaBooking.models.enums.BookingStatus;
 import com.exampleProject.CinemaBooking.repositories.BookingRepository;
-import com.exampleProject.CinemaBooking.services.BookingService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

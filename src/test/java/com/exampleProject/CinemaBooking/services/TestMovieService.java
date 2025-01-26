@@ -1,8 +1,7 @@
-package com.exampleProject.CinemaBooking.Services;
+package com.exampleProject.CinemaBooking.services;
 
 import com.exampleProject.CinemaBooking.models.Movie;
 import com.exampleProject.CinemaBooking.repositories.MovieRepository;
-import com.exampleProject.CinemaBooking.services.MovieService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

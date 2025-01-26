@@ -1,4 +1,4 @@
-package com.exampleProject.CinemaBooking.Services;
+package com.exampleProject.CinemaBooking.services;
 
 import com.exampleProject.CinemaBooking.dtos.SessionDto;
 import com.exampleProject.CinemaBooking.models.Hall;
@@ -6,7 +6,6 @@ import com.exampleProject.CinemaBooking.models.Movie;
 import com.exampleProject.CinemaBooking.models.Session;
 import com.exampleProject.CinemaBooking.repositories.MovieRepository;
 import com.exampleProject.CinemaBooking.repositories.SessionRepository;
-import com.exampleProject.CinemaBooking.services.SessionService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
